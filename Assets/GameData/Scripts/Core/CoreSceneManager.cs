@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,13 +44,18 @@ namespace CardGame.Core
 
         /// <summary>
         /// LoadCoreScene routine which creates the async operation to load the
-        /// specified CoreScene additively.
+        /// specified CoreScene additively. Avoids duplicates.
         /// </summary>
         /// <param name="coreScene"></param>
         /// <returns></returns>
         private IEnumerator LoadCoreScene(CoreScene coreScene)
         {
             int sceneIndex = (int)coreScene;
+            if (SceneManager.GetSceneByBuildIndex(sceneIndex).isLoaded)
+            {
+                Debug.Log($"[{nameof(CoreSceneManager)}] Already loaded scene {coreScene} ({sceneIndex})");
+                yield return null;
+            }
             AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
             operation.allowSceneActivation = true;
             yield return operation;
@@ -65,6 +71,11 @@ namespace CardGame.Core
         private IEnumerator UnloadCoreScene(CoreScene coreScene)
         {
             int sceneIndex = (int)coreScene;
+            if (!SceneManager.GetSceneByBuildIndex(sceneIndex).isLoaded)
+            {
+                Debug.Log($"[{nameof(CoreSceneManager)}] Ignoring request to unload scene {coreScene} ({sceneIndex})");
+                yield return null;
+            }
             AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneIndex);
             yield return operation;
             Debug.Log($"[{nameof(CoreSceneManager)}] Unloaded scene {coreScene} ({sceneIndex})");
