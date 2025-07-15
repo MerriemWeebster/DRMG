@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 2016572160}
   - component: {fileID: 2016572159}
   m_Layer: 0
-  m_Name: CoreScenesManager
+  m_Name: CoreSceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cda94ad6db11b4a8235b0269b9e2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadingSequence: 01000000
+  LoadingSequence: 0300000001000000
 --- !u!4 &2016572160
 Transform:
   m_ObjectHideFlags: 0
