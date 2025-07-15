@@ -9,13 +9,13 @@ namespace DRMG.Core
         public CoreScene coreScene;
 
         /// <summary>
-        /// Sends request to CoreScenesManager Instance to load specified CoreScene.
+        /// Sends request to CoreSceneManager Instance to load specified CoreScene.
         /// </summary>
         public void SendLoadRequest() => CoreSceneManager.Instance?.AddCoreScene(coreScene);
 
         /// <summary>
-        /// Sends request to CoreScenesManager Instance to unload specified CoreScene.
+        /// Sends request to CoreSceneManager Instance to unload specified CoreScene.
         /// </summary>
-        public void SendUnoadRequest() => CoreSceneManager.Instance?.RemoveCoreScene(coreScene);
+        public void SendUnloadRequest() => CoreSceneManager.Instance?.RemoveCoreScene(coreScene);
     }
 }

@@ -25,12 +25,12 @@ namespace CardGame.Core
         /// Begins a Couritine which unloads a CoreScene.
         /// Requests are handled parallelly.
         /// </summary>
-        /// <param name="coreScenes"></param>
-        public void RemoveCoreScene(CoreScene coreScenes) => StartCoroutine(UnloadCoreScene(coreScenes));
+        /// <param name="coreScene"></param>
+        public void RemoveCoreScene(CoreScene coreScene) => StartCoroutine(UnloadCoreScene(coreScene));
 
         /// <summary>
         /// This MonoBehaviour will execute a Start Coroutine that sequentially itterates through
-        /// each CoreScenes enum assigned in the LoadingSequence above. Each scene will
+        /// each CoreScene enum assigned in the LoadingSequence above. Each scene will
         /// be loaded additively via the routine as an async operation.
         /// </summary>
         /// <returns></returns>
