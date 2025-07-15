@@ -1,7 +1,7 @@
 namespace CardGame.Core
 {
     /// <summary>
-    /// An enum of all CoreScene assigned to their respective scene index.
+    /// An enum of all core scenes assigned to their respective scene index.
     /// </summary>
     public enum CoreScene
     {
