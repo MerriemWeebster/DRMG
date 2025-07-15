@@ -54,7 +54,7 @@ namespace CardGame.Core
             if (SceneManager.GetSceneByBuildIndex(sceneIndex).isLoaded)
             {
                 Debug.Log($"[{nameof(CoreSceneManager)}] Already loaded scene {coreScene} ({sceneIndex})");
-                yield return null;
+                yield break;
             }
             AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
             operation.allowSceneActivation = true;
@@ -74,7 +74,7 @@ namespace CardGame.Core
             if (!SceneManager.GetSceneByBuildIndex(sceneIndex).isLoaded)
             {
                 Debug.Log($"[{nameof(CoreSceneManager)}] Ignoring request to unload scene {coreScene} ({sceneIndex})");
-                yield return null;
+                yield break;
             }
             AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneIndex);
             yield return operation;
