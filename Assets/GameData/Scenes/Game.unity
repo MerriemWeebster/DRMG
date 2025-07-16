@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57019c59678f58048bcdb129959980a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboThresholdSeconds: 5
+  comboThresholdSeconds: 2.5
   scoreText: {fileID: 1691841996}
   gameOverSound: {fileID: 8300000, guid: 9b8a7a495d999de4181c9d3b9ae211f8, type: 3}
 --- !u!82 &1691841999
