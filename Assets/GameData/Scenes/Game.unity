@@ -541,6 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comboThresholdSeconds: 5
   scoreText: {fileID: 1691841996}
+  gameOverSound: {fileID: 8300000, guid: 9b8a7a495d999de4181c9d3b9ae211f8, type: 3}
 --- !u!1 &1737979027
 GameObject:
   m_ObjectHideFlags: 0
