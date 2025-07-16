@@ -13,12 +13,12 @@ namespace DRMG.Gameplay
         public List<Sprite> CardFaces { get; private set; }
         [SerializeField, HideInInspector] private bool allowRepition;
         [SerializeField, HideInInspector] private int score;
-        [Min(2), SerializeField, HideInInspector] private int gridWidth = 2;
+        [Min(2), SerializeField, HideInInspector] private int gridWidth = 3;
         [Min(2), SerializeField, HideInInspector] private int gridHeight = 2;
         [SerializeField, HideInInspector] private CardData[] cardDataCollection = new CardData[0];
         private List<ICardDataCollectionObserver> observers = new List<ICardDataCollectionObserver>();
 
-        public MatchDataSubject(int gridWidth = 2, int gridHeight = 2, bool allowRepition = false)
+        public MatchDataSubject(int gridWidth = 3, int gridHeight = 2, bool allowRepition = false)
         {
             this.gridWidth = gridWidth;
             this.gridHeight = gridHeight;
