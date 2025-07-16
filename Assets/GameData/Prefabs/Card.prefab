@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00c1d8c43b344a63a35f0d590d53b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 10
+  animationSpeed: 25
   cardBack: {fileID: 21300000, guid: 6c4f241a5e9754f899e8245d7c491af1, type: 3}
 --- !u!114 &2542154841799369557
 MonoBehaviour:
