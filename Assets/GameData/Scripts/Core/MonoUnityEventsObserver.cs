@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace DRMG.Core
 {
+    /// <summary>
+    /// Component that fires UnityEvent based on target event.
+    /// </summary>
     public class MonoUnityEventsObserver : MonoBehaviour
     {
         internal enum EventType
@@ -14,7 +17,8 @@ namespace DRMG.Core
             OnDestroy
         }
 
-        [SerializeField] private EventType targetEventType;
+        [SerializeField, Tooltip("OnTargetEvent UnityEvent will fire during specified EventType.")]
+        private EventType targetEventType;
         [SerializeField] private UnityEvent onTargetEvent;
 
         private void Awake()
