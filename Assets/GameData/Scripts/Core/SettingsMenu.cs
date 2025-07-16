@@ -62,8 +62,8 @@ namespace DRMG.Core
         private void RebuildGridSizeDropdown()
         {
             gridSizeDropdown.options.Clear();
-            for (int x = 2; x <= maxGridLength; x++)
-                for (int y = 2; y <= maxGridLength; y++)
+            for (int y = 1; y <= maxGridLength; y++)
+                for (int x = 1; x <= maxGridLength; x++)
                     if (MatchDataManager.MatchDataSubject.ValidGridSize(x, y))
                         gridSizeOptions.Add(new GridSizeOption(x, y));
             foreach (GridSizeOption option in gridSizeOptions)
