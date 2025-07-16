@@ -8,7 +8,6 @@ namespace CardGame.Core
         Core = 0,
         Menu = 1,
         Game = 2,
-        UI_EventSystem = 3,
-        UI_PauseMenu = 4
+        UI_EventSystem = 3
     }
 }
