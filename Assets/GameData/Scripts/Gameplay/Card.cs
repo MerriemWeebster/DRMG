@@ -18,8 +18,8 @@ namespace DRMG.Gameplay
         public void OnCardDataCollectionModified(CardData[] cardDataCollection)
         {
             if (cardDataCollection == null || cardGridIndex == -1) return;
-            cardData = cardDataCollection[cardGridIndex];
             if (updateStateRoutine != null) StopCoroutine(updateStateRoutine);
+            cardData = cardDataCollection[cardGridIndex];
             updateStateRoutine = StartCoroutine(UpdateCardState());
         }
 
@@ -34,25 +34,27 @@ namespace DRMG.Gameplay
 
         public void FlipCard()
         {
-            if (cardGridIndex == -1 || cardData.cardState != CardState.FaceDown) return;
+            if (cardGridIndex == -1 || cardData.cardState == CardState.FaceUp) return;
             MatchDataManager.MatchDataSubject.UpdateCardState(cardGridIndex, CardState.FaceUp);
         }
 
         private IEnumerator UpdateCardState()
         {
+            image ??= GetComponent<Image>();
+            Sprite targetSprite = cardData.cardState == CardState.FaceDown ? cardBack : cardData.GetCardFaceSprite();
+
             while (previousState != cardData.cardState)
             {
                 Vector3 currentScale = transform.localScale;
                 currentScale.x = Mathf.Clamp(currentScale.x - Time.deltaTime * animationSpeed, 0f, currentScale.x);
-                if (currentScale.x == 0f)
+                if (currentScale.x == 0f || targetSprite == image.sprite)
                     previousState = cardData.cardState;
                 transform.localScale = currentScale;
                 yield return null;
             }
 
-            image ??= GetComponent<Image>();
-            image.sprite = cardData.cardState == CardState.FaceDown ? cardBack : cardData.GetCardFaceSprite();
-            image.color = cardData.cardState == CardState.Matched ? Color.gray : Color.white;
+            image.sprite = targetSprite;
+            image.color = cardData.cardState == CardState.Matched ? Color.gray : (cardData.cardState == CardState.FailedMatch ? Color.red : Color.white);
 
             while (transform.localScale.x != 1f)
             {
@@ -60,6 +62,12 @@ namespace DRMG.Gameplay
                 currentScale.x = Mathf.Clamp(currentScale.x + Time.deltaTime * animationSpeed, currentScale.x, 1f);
                 transform.localScale = currentScale;
                 yield return null;
+            }
+
+            if (cardData.cardState == CardState.FailedMatch)
+            {
+                yield return new WaitForSeconds(0.25f);
+                MatchDataManager.MatchDataSubject.UpdateCardState(cardGridIndex, CardState.FaceDown);
             }
 
             updateStateRoutine = null;
