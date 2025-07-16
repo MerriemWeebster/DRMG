@@ -7,7 +7,6 @@ namespace DRMG.Gameplay
     public struct CardData
     {
         public int cardFaceId;
-        [NonSerialized]
         public CardState cardState;
 
         public CardData(int cardFaceId, CardState cardState = CardState.FaceDown)
