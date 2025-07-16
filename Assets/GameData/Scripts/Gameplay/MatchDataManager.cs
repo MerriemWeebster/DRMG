@@ -20,7 +20,7 @@ namespace DRMG.Gameplay
                 string json = File.ReadAllText(SaveFilePath);
                 MatchDataSubject = JsonUtility.FromJson<MatchDataSubject>(json);
             }
-            
+
             return MatchDataSubject;
         }
 
@@ -28,7 +28,7 @@ namespace DRMG.Gameplay
         {
             string json = JsonUtility.ToJson(MatchDataSubject, prettyPrint: true);
             File.WriteAllText(SaveFilePath, json);
-            Debug.LogWarning($"[{nameof(MatchDataManager)}] MatchData file saved.");
+            Debug.Log($"[{nameof(MatchDataManager)}] MatchData file saved.\n{json}");
         }
     }
 }
