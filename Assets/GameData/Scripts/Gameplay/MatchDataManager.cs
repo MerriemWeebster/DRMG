@@ -24,9 +24,9 @@ namespace DRMG.Gameplay
             return MatchDataSubject;
         }
 
-        public static void SaveMatchData(MatchDataSubject matchData)
+        public static void SaveMatchData()
         {
-            string json = JsonUtility.ToJson(matchData, prettyPrint: true);
+            string json = JsonUtility.ToJson(MatchDataSubject, prettyPrint: true);
             File.WriteAllText(SaveFilePath, json);
             Debug.LogWarning($"[{nameof(MatchDataManager)}] MatchData file saved.");
         }

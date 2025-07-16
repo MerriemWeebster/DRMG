@@ -6,5 +6,6 @@ namespace DRMG.Gameplay
     {
         public CardFacesObject cardFacesObject;
         private void Awake() => MatchDataManager.LoadMatchData().SetCardFaces(cardFacesObject.cardFaces);
+        private void OnDisable() => MatchDataManager.SaveMatchData();
     }
 }
