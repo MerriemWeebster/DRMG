@@ -5,11 +5,14 @@ using UnityEngine.UI;
 namespace DRMG.Gameplay
 {
     [RequireComponent(typeof(Image))]
+    [RequireComponent(typeof(AudioSource))]
     public class Card : MonoBehaviour, ICardDataCollectionObserver
     {
         public float animationSpeed = 0.1f;
         public Sprite cardBack;
+        public AudioClip flipSound, matchSound, mismatchSound;
         private int cardGridIndex = -1;
+        private AudioSource audioSource;
         private Image image;
         private CardData cardData;
         private CardState previousState;
@@ -40,8 +43,20 @@ namespace DRMG.Gameplay
 
         private IEnumerator UpdateCardState()
         {
+            audioSource ??= GetComponent<AudioSource>();
             image ??= GetComponent<Image>();
             Sprite targetSprite = cardData.cardState == CardState.FaceDown ? cardBack : cardData.GetCardFaceSprite();
+
+            if (previousState == CardState.FaceDown && cardData.cardState == CardState.FaceUp
+                || previousState == CardState.FaceUp && cardData.cardState == CardState.FaceDown)
+                audioSource.PlayOneShot(flipSound);
+
+            if (previousState != CardState.Matched && cardData.cardState == CardState.Matched)
+                audioSource.PlayOneShot(matchSound);
+
+
+            if (previousState != CardState.FailedMatch && cardData.cardState == CardState.FailedMatch)
+                audioSource.PlayOneShot(mismatchSound);
 
             while (previousState != cardData.cardState)
             {

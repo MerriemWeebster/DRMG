@@ -3,12 +3,15 @@ using UnityEngine;
 
 namespace DRMG.Gameplay
 {
+    [RequireComponent(typeof(AudioSource))]
     public class ScoreManager : MonoBehaviour, ICardDataCollectionObserver
     {
         public float comboThresholdSeconds = 0.5f;
         public TextMeshProUGUI scoreText;
+        public AudioClip gameOverSound;
         private int combo = 1;
         private float lastScore = float.MinValue;
+        private AudioSource audioSource;
 
         public void OnCardDataCollectionModified(CardData[] cardDataCollection)
         {
@@ -41,6 +44,22 @@ namespace DRMG.Gameplay
                         }
                     }
                 }
+            }
+
+            bool gameOver = true;
+            foreach (CardData cardData in cardDataCollection)
+            {
+                if (cardData.cardState != CardState.Matched)
+                {
+                    gameOver = false;
+                    break;
+                }
+            }
+
+            if (gameOver)
+            {
+                audioSource ??= GetComponent<AudioSource>();
+                audioSource.PlayOneShot(gameOverSound);
             }
         }
 
