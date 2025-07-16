@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace DRMG.Core
 {
+    /// <summary>
+    /// Component for loading and unloading a CoreScene.
+    /// </summary>
     public class CoreSceneRequestController : MonoBehaviour
     {
         [Tooltip("Specified CoreScene to load.")]
