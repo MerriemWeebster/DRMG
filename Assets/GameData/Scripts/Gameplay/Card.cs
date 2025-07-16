@@ -37,7 +37,7 @@ namespace DRMG.Gameplay
 
         public void FlipCard()
         {
-            if (cardGridIndex == -1 || cardData.cardState == CardState.FaceUp) return;
+            if (cardGridIndex == -1 || cardData.cardState == CardState.FaceUp || cardData.cardState == CardState.Matched) return;
             MatchDataManager.MatchDataSubject.UpdateCardState(cardGridIndex, CardState.FaceUp);
         }
 
